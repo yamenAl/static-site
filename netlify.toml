@@ -1,9 +1,6 @@
 [build]
-  # `base` is the working directory for the build; `publish` is relative to `base`.
   base = "static-web"
   command = "npm run build"
-  # Netlify combines `base` + `publish`, so set this to the output folder inside
-  # `static-web` (vite outputs to `build`); do NOT repeat `static-web` here.
   publish = "build"
 
 [context.production.environment]
