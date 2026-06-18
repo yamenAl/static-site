@@ -67,7 +67,9 @@
 	--grey: #6b6b6b;
 	--line: #e0e0e0;
 	--text-muted: #333333;
+	--text-body: #43403a;
 	--success: #2a7d4f;
+	--error: #b00020;
 
 	/* Neutral scale */
 	--grey-900: #111010;
@@ -108,6 +110,7 @@
 		--grey: #9c9890;
 		--line: #2c2b2a;
 		--text-muted: #c4c0b8;
+		--text-body: #c4c0b8;
 		--success: #6fcf97;
 		--grey-900: #f3f1ec;
 		--grey-700: #c4c0b8;
@@ -489,25 +492,11 @@ select {
 .send {
 	margin-top: 28px;
 	justify-self: start;
-	font-family: var(--font-mono);
-	font-size: 12px;
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	background: var(--ink);
-	color: var(--paper);
-	border: none;
-	padding: 16px 32px;
-	cursor: pointer;
-	transition: transform var(--transition-fast), opacity var(--transition-base);
-	border-radius: var(--radius-full);
 
-	&:hover {
-		opacity: 0.85;
-	}
-
-	&:active {
-		transform: translateY(1px);
+	&:disabled {
+		opacity: 0.55;
+		cursor: not-allowed;
+		pointer-events: none;
 	}
 }
 

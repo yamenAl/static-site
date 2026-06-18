@@ -2,6 +2,9 @@ import { supabase } from '$lib/supabaseClient';
 
 const PAGE_SIZE = 4;
 
+const defaultAbout =
+	'I care about the unglamorous craft — the empty states, the error copy, the exact moment a feature first makes sense to someone.';
+
 /** @param {string | null | undefined} url */
 function cleanUrl(url) {
 	return url?.replace(/\$\d+$/, '').trim() ?? '';
@@ -71,7 +74,7 @@ function buildPageData(homePage, info, projects) {
 	const lastName = info?.last_name?.trim() || displayName.split(' ').slice(1).join(' ');
 	const year = new Date().getFullYear();
 	const aboutText = homePage?.body?.trim();
-	const about = !isPlaceholder(aboutText) ? aboutText : '';
+	const about = !isPlaceholder(aboutText) ? aboutText : defaultAbout;
 
 	return {
 		profile: { homePage, info },
@@ -85,7 +88,8 @@ function buildPageData(homePage, info, projects) {
 		tickerItems: buildTickerItems(projects),
 		projects,
 		facts: buildFacts(info),
-		year
+		year,
+		email: info?.my_mail?.trim() || ''
 	};
 }
 

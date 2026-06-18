@@ -3,6 +3,9 @@
   command = "npm run build"
   publish = "build"
 
+[functions]
+  directory = "netlify/functions"
+
 [build.environment]
   PUBLIC_SUPABASE_URL = "https://tntwloaahvazasizbkxk.supabase.co"
   PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_DNVNmBRIe8TDiegiMGkVyQ_Gk1dACC8"

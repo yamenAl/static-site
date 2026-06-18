@@ -1,7 +1,7 @@
 <script>
 	import SocialLinks from '$lib/components/molecules/SocialLinks.svelte';
 
-	let { firstName, lastName, displayName, roleHtml, year, socials, meta } = $props();
+	let { displayName, roleHtml, year, socials, meta } = $props();
 </script>
 
 <section class="hero" id="top">

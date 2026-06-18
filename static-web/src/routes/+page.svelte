@@ -15,8 +15,6 @@
 
 <main>
 	<HeroSection
-		firstName={data.firstName}
-		lastName={data.lastName}
 		displayName={data.displayName}
 		roleHtml={data.roleHtml}
 		year={data.year}
@@ -34,5 +32,5 @@
 <SiteFooter
 	year={data.year}
 	displayName={data.displayName}
-	firstName={data.firstName}
+	email={data.email}
 />
