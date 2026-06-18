@@ -14,7 +14,9 @@
 	</figure>
 
 	<section class="lede">
-		<p class="role">{@html roleHtml}</p>
+		{#if roleHtml}
+			<p class="role">{@html roleHtml}</p>
+		{/if}
 		<SocialLinks links={socials} />
 	</section>
 

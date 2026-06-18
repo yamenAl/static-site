@@ -8,10 +8,15 @@
 <section class="sec" id="about">
 	<SectionLabel text="About" />
 	<section class="about">
-		<article>
-			<p class="big">A decade turning <em>fuzzy problems</em> into clear, usable products.</p>
-			<p>{about}</p>
-		</article>
-		<FactList {facts} />
+		{#if about || facts.length}
+			<article>
+				{#if about}
+					<p>{about}</p>
+				{/if}
+			</article>
+			{#if facts.length}
+				<FactList {facts} />
+			{/if}
+		{/if}
 	</section>
 </section>

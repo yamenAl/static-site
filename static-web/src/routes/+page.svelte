@@ -10,7 +10,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.displayName} — Senior Product Designer</title>
+	<title>{data.displayName || 'Portfolio'}</title>
 </svelte:head>
 
 <main>
@@ -23,7 +23,9 @@
 		socials={data.socials}
 		meta={data.meta}
 	/>
-	<TickerBar items={data.tickerItems} />
+	{#if data.tickerItems.length}
+		<TickerBar items={data.tickerItems} />
+	{/if}
 	<WorkSection projects={data.projects} />
 	<AboutSection about={data.about} facts={data.facts} />
 	<ContactSection />
