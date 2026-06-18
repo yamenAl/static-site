@@ -1,3 +1,5 @@
+// Netlify contact handler: parse form body, validate, insert into Supabase visitor table.
+
 /** @param {string | undefined} contentType @param {string} rawBody */
 export function parseContactBody(contentType = '', rawBody = '') {
 	if (contentType.includes('application/json')) {

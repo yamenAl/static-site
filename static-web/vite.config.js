@@ -2,6 +2,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
 import { handleContactRequest } from '../netlify/lib/handleContact.js';
 
+// Local dev proxy for the Netlify contact function.
+
 /** @param {import('http').IncomingMessage} req */
 function readRequestBody(req) {
 	return new Promise((resolve, reject) => {
@@ -12,7 +14,6 @@ function readRequestBody(req) {
 	});
 }
 
-/** Dev-only handler so the contact form works without Netlify CLI. */
 function contactFormDevPlugin() {
 	return {
 		name: 'contact-form-dev',

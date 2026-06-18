@@ -1,3 +1,5 @@
+// Loads homepage data from Supabase and shapes it for the portfolio page.
+
 import { supabase } from '$lib/supabaseClient';
 
 const PAGE_SIZE = 4;
@@ -5,18 +7,15 @@ const PAGE_SIZE = 4;
 const defaultAbout =
 	'I care about the unglamorous craft — the empty states, the error copy, the exact moment a feature first makes sense to someone.';
 
-/** @param {string | null | undefined} url */
 function cleanUrl(url) {
 	return url?.replace(/\$\d+$/, '').trim() ?? '';
 }
 
-/** @param {string | null | undefined} text */
 function isPlaceholder(text) {
 	const value = text?.trim().toLowerCase();
 	return !value || value === 'body';
 }
 
-/** @param {Record<string, string | null | undefined> | null | undefined} info */
 function buildSocials(info) {
 	/** @type {{ label: string; href: string }[]} */
 	const socials = [];
@@ -28,7 +27,6 @@ function buildSocials(info) {
 	return socials;
 }
 
-/** @param {Record<string, string | null | undefined> | null | undefined} info */
 function buildFacts(info) {
 	/** @type {{ k: string; v: string }[]} */
 	const facts = [];
@@ -40,7 +38,6 @@ function buildFacts(info) {
 	return facts;
 }
 
-/** @param {any[] | null | undefined} rows */
 function buildProjects(rows) {
 	if (!rows?.length) return [];
 
@@ -54,12 +51,10 @@ function buildProjects(rows) {
 	}));
 }
 
-/** @param {ReturnType<typeof buildProjects>} projects */
 function buildTickerItems(projects) {
 	return projects.map((project) => project.name).filter(Boolean);
 }
 
-/** @param {any} homePage @param {any} info @param {ReturnType<typeof buildProjects>} projects */
 function buildPageData(homePage, info, projects) {
 	const displayName =
 		info?.display_name?.trim() ||

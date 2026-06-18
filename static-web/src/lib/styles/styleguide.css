@@ -1,4 +1,4 @@
-/* src/lib/styles/styleguide.css */
+/* Reset */
 
 *,
 *::before,
@@ -8,7 +8,7 @@
 	box-sizing: border-box;
 }
 
-/* ── Fraunces (variable, optical size) ── */
+/* Fonts */
 @font-face {
 	font-family: 'Fraunces';
 	src: url('../assets/fonts/fraunces-latin-normal.woff2') format('woff2-variations');
@@ -25,7 +25,6 @@
 	font-display: swap;
 }
 
-/* ── Space Mono ── */
 @font-face {
 	font-family: 'Space Mono';
 	src: url('../assets/fonts/space-mono-latin-400-normal.woff2') format('woff2');
@@ -50,18 +49,10 @@
 	font-display: swap;
 }
 
+/* Colors */
+
 :root {
 	color-scheme: light;
-
-	/* Typography */
-	--font-serif: 'Fraunces', Georgia, serif;
-	--font-mono: 'Space Mono', monospace;
-	--main-font: var(--font-serif);
-	--font-weight-medium: 500;
-	--line-height-tight: 1.2;
-	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-	/* Portfolio palette */
 	--ink: #111010;
 	--paper: #ffffff;
 	--grey: #6b6b6b;
@@ -70,36 +61,13 @@
 	--text-body: #43403a;
 	--success: #2a7d4f;
 	--error: #b00020;
-
-	/* Neutral scale */
 	--grey-900: #111010;
 	--grey-700: #333333;
 	--grey-500: #6b6b6b;
 	--grey-300: #e0e0e0;
 	--grey-100: #f5f5f5;
-
-	/* Spacing */
-	--spacing-xs: 0.5rem;
-	--spacing-sm: 0.75rem;
-	--spacing-md: 1rem;
-	--spacing-lg: 1.5rem;
-	--spacing-xl: 2rem;
-	--spacing-2xl: 3rem;
-	--spacing-3xl: 4rem;
-
-	/* Radius */
-	--radius-sm: 0.5rem;
-	--radius-md: 0.75rem;
-	--radius-lg: 1rem;
-	--radius-full: 999px;
-
-	/* Transitions */
-	--transition-fast: 0.15s ease;
-	--transition-base: 0.2s ease;
-	--transition-slow: 0.3s ease;
-
-	/* Form (prevents iOS zoom) */
-	--form-mobile-input-size: 16px;
+	--menu-overlay-bg: #111010;
+	--menu-overlay-text: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -117,8 +85,42 @@
 		--grey-500: #9c9890;
 		--grey-300: #2c2b2a;
 		--grey-100: #1a1918;
+		--menu-overlay-text: #f3f1ec;
 	}
 }
+
+/* Typography */
+
+:root {
+	--font-serif: 'Fraunces', Georgia, serif;
+	--font-mono: 'Space Mono', monospace;
+	--main-font: var(--font-serif);
+	--font-weight-medium: 500;
+	--line-height-tight: 1.2;
+	--form-mobile-input-size: 16px;
+}
+
+/* Spacing */
+
+:root {
+	--spacing-xs: 0.5rem;
+	--spacing-sm: 0.75rem;
+	--spacing-md: 1rem;
+	--spacing-lg: 1.5rem;
+	--spacing-xl: 2rem;
+	--spacing-2xl: 3rem;
+	--spacing-3xl: 4rem;
+	--radius-sm: 0.5rem;
+	--radius-md: 0.75rem;
+	--radius-lg: 1rem;
+	--radius-full: 999px;
+	--transition-fast: 0.15s ease;
+	--transition-base: 0.2s ease;
+	--transition-slow: 0.3s ease;
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base */
 
 .site-shell {
 	--edge: 24px;
@@ -152,7 +154,7 @@ body {
 	}
 }
 
-/* ── Typography scale ── */
+/* Type scale */
 .h1,
 .main-title {
 	font-size: clamp(24px, 5vw, 48px);
@@ -218,7 +220,7 @@ select {
 	font-size: var(--form-mobile-input-size);
 }
 
-/* ── Utilities ── */
+/* Utilities */
 .sr-only {
 	position: absolute;
 	width: 1px;
@@ -236,7 +238,19 @@ select {
 	outline-offset: 4px;
 }
 
-/* ── Navigation ── */
+/* Navigation */
+
+@keyframes menu-link-in {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 .topbar {
 	position: fixed;
 	top: 0;
@@ -266,8 +280,8 @@ select {
 				display: flex;
 				position: fixed;
 				inset: 0;
-				background: var(--ink);
-				color: var(--paper);
+				background: var(--menu-overlay-bg);
+				color: var(--menu-overlay-text);
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
@@ -280,11 +294,25 @@ select {
 					font-weight: 500;
 					text-transform: none;
 					letter-spacing: -0.02em;
+					opacity: 0;
+					animation: menu-link-in 0.45s var(--ease-out) forwards;
+
+					&:nth-child(1) {
+						animation-delay: 0.08s;
+					}
+
+					&:nth-child(2) {
+						animation-delay: 0.18s;
+					}
+
+					&:nth-child(3) {
+						animation-delay: 0.28s;
+					}
 				}
 			}
 
 			& + .burger {
-				color: var(--paper);
+				color: var(--menu-overlay-text);
 			}
 		}
 	}
@@ -402,7 +430,8 @@ select {
 	}
 }
 
-/* ── Buttons ── */
+/* Buttons */
+
 @keyframes btn-fill {
 	from {
 		transform: translateY(101%);
@@ -500,7 +529,7 @@ select {
 	}
 }
 
-/* ── Layout breakpoints ── */
+/* Breakpoints */
 @media (min-width: 42rem) and (max-width: 63.99rem) {
 	.site-shell {
 		--edge: 48px;
@@ -535,6 +564,8 @@ select {
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 0.12em;
+			opacity: 1;
+			animation: none;
 		}
 
 		.burger {
@@ -577,6 +608,8 @@ select {
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 0.12em;
+			opacity: 1;
+			animation: none;
 		}
 
 		.burger {
@@ -591,6 +624,8 @@ select {
 		color: var(--ink);
 	}
 }
+
+/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
 	*,

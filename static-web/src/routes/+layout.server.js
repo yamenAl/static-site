@@ -1,3 +1,5 @@
+// Loads the first name used in the navbar brand.
+
 import { supabase } from '$lib/supabaseClient';
 
 export async function load() {
