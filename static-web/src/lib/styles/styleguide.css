@@ -74,7 +74,7 @@
 	:root {
 		color-scheme: dark;
 		--ink: #f3f1ec;
-		--paper: #111010;
+		--paper: #000000;
 		--grey: #9c9890;
 		--line: #2c2b2a;
 		--text-muted: #c4c0b8;
@@ -84,7 +84,8 @@
 		--grey-700: #c4c0b8;
 		--grey-500: #9c9890;
 		--grey-300: #2c2b2a;
-		--grey-100: #1a1918;
+		--grey-100: #111010;
+		--menu-overlay-bg: #000000;
 		--menu-overlay-text: #f3f1ec;
 	}
 }
