@@ -33,5 +33,4 @@
 	year={data.year}
 	displayName={data.displayName}
 	firstName={data.firstName}
-	designedIn={data.designedIn}
 />

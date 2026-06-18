@@ -1,9 +1,8 @@
 <script>
-	let { year, displayName, firstName, designedIn } = $props();
+	let { year, displayName, firstName } = $props();
 </script>
 
 <footer>
 	<span>© {year} {displayName}</span>
 	<span>hello@{firstName.toLowerCase()}.com</span>
-	<span>Designed in {designedIn}</span>
 </footer>

@@ -1,19 +1,14 @@
 import { supabase } from '$lib/supabaseClient';
 
-const tickerItems = [
-	"Appstore Editors' Choice",
-	'App of the Day',
-	'One of 50 Essential UX Portfolios',
-	'Interaction Latin America — Speaker'
-];
+const tickerItems = ['Interaction Latin America — Speaker'];
 
 const PAGE_SIZE = 4;
 
 const defaultFacts = [
-	{ k: 'Based', v: 'Berlin, DE' },
-	{ k: 'Now', v: 'Senior PD, N26' },
+	{ k: 'Based', v: '' },
+	{ k: 'Now', v: '' },
 	{ k: 'Focus', v: 'Mobile · Systems · Research' },
-	{ k: 'Speaking', v: 'Interaction LATAM' }
+	{ k: 'Speaking', v: 'Interaction Latin America — Speaker' }
 ];
 
 const defaultAbout =
@@ -34,12 +29,6 @@ function buildSocials(info) {
 	if (info?.GitHub) socials.push({ label: 'GitHub', href: cleanUrl(info.GitHub) });
 
 	return socials;
-}
-
-/** @param {string | null | undefined} address */
-function cityFromAddress(address) {
-	const city = address?.split(',')[0]?.trim();
-	return city || 'Berlin';
 }
 
 /** @param {Record<string, string | null | undefined> | null | undefined} info */
@@ -85,16 +74,17 @@ function buildPageData(homePage, info, projects) {
 		displayName,
 		firstName,
 		lastName,
-		roleHtml: homePage?.title
-			? homePage.title
-			: 'Senior Product Designer at <em>N26</em>, Berlin — building things people actually want to use.',
+		roleHtml: homePage?.title ? homePage.title : 'building things people actually want to use.',
 		about,
 		socials: buildSocials(info),
-		meta: [`©${year}`, info?.Adress ?? 'Berlin 52.52°N', 'Portfolio / Vol.01'],
+		meta: [
+			`©${year}`,
+			...(info?.Adress?.trim() ? [info.Adress.trim()] : []),
+			'Portfolio / Vol.01'
+		],
 		tickerItems,
 		projects,
 		facts: buildFacts(info),
-		designedIn: cityFromAddress(info?.Adress),
 		year
 	};
 }
